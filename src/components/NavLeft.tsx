@@ -25,7 +25,11 @@ const NavLeft = () => {
     >
       <div className="sm:h-nav-top" />
       <div className="margin h-[50px]" />
-      <Link href="/">
+      <Link
+        href="/"
+        data-active={pathname === '/'}
+        className="data-[active=true]:text-pink-base"
+      >
         <IconLogoGeometry className="mx-auto" />
       </Link>
       <button
@@ -38,6 +42,9 @@ const NavLeft = () => {
         <IconClose />
       </button>
       <ul className="flex flex-col items-center">
+        <NavLeftItem href="/search" activeCondition={/\/search(\/.+||)/}>
+          search
+        </NavLeftItem>
         <NavLeftItem href="/posts" activeCondition={/\/posts(\/.+||)/}>
           posts
         </NavLeftItem>

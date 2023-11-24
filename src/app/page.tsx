@@ -20,6 +20,9 @@ export default async function Home() {
     <LayoutBase pageName="main" className="items-center">
       <p className="text-xl">박성렬 블로그 & 포트폴리오</p>
       <IconLogoGeometry />
+      <PrettyLink href="/search" className="mb-[20px]">
+        SEARCH
+      </PrettyLink>
       <PrettyLink href="/works" className="mb-[20px]">
         WORKS
       </PrettyLink>

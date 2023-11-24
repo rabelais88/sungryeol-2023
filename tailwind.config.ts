@@ -32,6 +32,7 @@ const config: Config = {
         'dot-underline-white': "url('/images/dot-underline-white.svg')",
         'wave-underline-black': "url('/images/wave-underline.svg')",
         'wave-underline-white': "url('/images/wave-underline-white.svg')",
+        'search-oval': "url('/icons/search-oval.svg')",
       },
       zIndex: {
         menu: '1310',

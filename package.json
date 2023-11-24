@@ -10,6 +10,7 @@
     "search-index": "ts-node --project ./tsconfig-scripts.json -r tsconfig-paths/register src/scripts/searchIndex.ts"
   },
   "dependencies": {
+    "@algolia/client-search": "^4.20.0",
     "@keystatic/core": "^0.2.4",
     "@keystatic/next": "^2.0.0",
     "@mdx-js/loader": "^3.0.0",

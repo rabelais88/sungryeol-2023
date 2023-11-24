@@ -4,9 +4,15 @@ import { PropsWithChildren } from 'react';
 
 interface PrettyLinkProps extends PropsWithClass, PropsWithChildren {
   href: string;
+  disabled?: boolean;
 }
 
-const PrettyLink = ({ href, className, children }: PrettyLinkProps) => {
+const PrettyLink = ({
+  href,
+  className,
+  children,
+  disabled,
+}: PrettyLinkProps) => {
   return (
     <Link
       href={href}
@@ -16,8 +22,10 @@ const PrettyLink = ({ href, className, children }: PrettyLinkProps) => {
         'focus:bg-wave-underline-black focus:bg-[length:15px_5px] focus:animate-underline focus:pb-[5px]',
         'dark:text-white dark:bg-dot-underline-white',
         'dark:hover:bg-wave-underline-white dark:focus:bg-wave-underline-white',
+        'data-[disabled=true]:pointer-events-none data-[disabled=true]:text-gray-300',
         className
       )}
+      data-disabled={disabled}
     >
       {children}
     </Link>
