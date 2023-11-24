@@ -19,8 +19,8 @@ const NavLeftItem = ({ href, children, activeCondition }: NavLeftItemProps) => {
       <Link
         href={href}
         className={joinClass(
-          'text-black border-b-2 border-black p-4',
-          'data-[active=true]:text-pink-base data-[active=true]:border-pink-base',
+          'text-black border-b border-black p-4',
+          'data-[active=true]:text-pink-base data-[active=true]:border-pink-base data-[active=true]:border-b-2',
           'dark:text-white dark:border-white',
           'dark:data-[active=true]:text-black dark:data-[active=true]:border-black'
         )}

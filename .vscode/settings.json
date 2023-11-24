@@ -1,7 +1,7 @@
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
-  "[mdoc]": {
+  "[markdown]": {
     "editor.defaultFormatter": "dbaeumer.vscode-eslint",
     "editor.formatOnSave": false
     // "editor.unicodeHighlight.ambiguousCharacters": false,
@@ -15,6 +15,6 @@
     // }
   },
   "files.associations": {
-    "**/*.mdoc": "mdoc"
+    "**/*.mdoc": "markdown"
   }
 }

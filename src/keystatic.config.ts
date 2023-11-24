@@ -1,11 +1,17 @@
-import { config, fields, collection } from '@keystatic/core';
+import { config, fields, collection, component } from '@keystatic/core';
+import { formatDate } from './utils';
 
 export default config({
+  ui: {
+    brand: { name: 'sungryeol blog and portfolio' },
+  },
   storage: { kind: 'local' },
   collections: {
     posts: collection({
       label: 'Posts',
       slugField: 'slug',
+      // previewUrl: '/preview/start?branch={branch}&to=/posts/{slug}'
+      previewUrl: '/posts/{slug}',
       path: '/src/content/posts/*',
       format: { contentField: 'content' },
       entryLayout: 'content',
@@ -13,13 +19,23 @@ export default config({
         title: fields.text({ label: 'Title' }),
         slug: fields.text({ label: 'slug' }),
         visible: fields.checkbox({ label: 'visible', defaultValue: true }),
-        publishedAt: fields.datetime({ label: 'Published Time' }),
+        publishedAt: fields.datetime({
+          label: 'Published Time (UTC)',
+          defaultValue: formatDate(new Date(), 'YYYY-MM-DDTHH:MM', {
+            utc: true,
+          }),
+        }),
         content: fields.document({
           label: 'Content',
           formatting: true,
           dividers: true,
           links: true,
-          images: true,
+          images: {
+            // path
+            directory: 'posts',
+            // url
+            // publicPath: 'posts/',
+          },
           tables: true,
         }),
         tags: fields.array(
@@ -47,6 +63,7 @@ export default config({
     works: collection({
       label: 'Works',
       slugField: 'slug',
+      previewUrl: '/works/{slug}',
       path: '/src/content/works/*',
       format: { contentField: 'content' },
       entryLayout: 'content',
@@ -54,7 +71,12 @@ export default config({
         title: fields.text({ label: 'Title' }),
         slug: fields.text({ label: 'Slug' }),
         visible: fields.checkbox({ label: 'visible', defaultValue: true }),
-        publishedAt: fields.date({ label: 'Published Date' }),
+        publishedAt: fields.date({
+          label: 'Published Date (UTC)',
+          defaultValue: formatDate(new Date(), 'YYYY-MM-DDTHH:MM', {
+            utc: true,
+          }),
+        }),
         publishedAtType: fields.select({
           label: 'Published Date Type',
           options: [
@@ -76,6 +98,13 @@ export default config({
           fields.url({ label: 'URL', validation: { isRequired: true } }),
           { label: 'URLs', itemLabel: (props) => props.value ?? 'empty url' }
         ),
+        videos: fields.array(
+          fields.url({ label: 'URL', validation: { isRequired: true } }),
+          {
+            label: 'Video URLs',
+            itemLabel: (props) => props.value ?? 'empty url',
+          }
+        ),
       },
     }),
   },
@@ -84,6 +113,7 @@ export default config({
       label: 'Contact',
       // @ts-ignore
       path: '/src/content/contact',
+      previewUrl: '/contact',
       format: { contentField: 'content' },
       entryLayout: 'content',
       schema: {
@@ -95,13 +125,13 @@ export default config({
           images: true,
           tables: true,
         }),
-        urls: fields.array(
-          fields.url({ label: 'URL', validation: { isRequired: true } }),
-          {
-            label: 'URLs',
-            itemLabel: (props) => props.value ?? 'empty url',
-          }
-        ),
+        // urls: fields.array(
+        //   fields.url({ label: 'URL', validation: { isRequired: true } }),
+        //   {
+        //     label: 'URLs',
+        //     itemLabel: (props) => props.value ?? 'empty url',
+        //   }
+        // ),
       },
     }),
   },

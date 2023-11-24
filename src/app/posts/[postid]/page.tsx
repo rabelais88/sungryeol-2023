@@ -1,12 +1,15 @@
 import { DocumentRenderer } from '@keystatic/core/renderer';
 
-import { createReader } from '@keystatic/core/reader';
-import keystaticConfig from '@/keystatic.config';
-import ButtonOutline from '@/components/shared/ButtonOutline';
 import IconShare from '@/components/icons/IconShare';
-import Tag from '@/components/shared/Tag';
-import { formatDate, joinClass } from '@/utils';
+import ButtonOutline from '@/components/shared/ButtonOutline';
 import Divider from '@/components/shared/Divider';
+import LayoutBase from '@/components/shared/LayoutBase';
+import Tag from '@/components/shared/Tag';
+import keystaticConfig from '@/keystatic.config';
+import { formatDate, joinClass } from '@/utils';
+import { createReader } from '@keystatic/core/reader';
+import CustomImg from '@/components/markdown/CustomImg';
+import { Code } from 'bright';
 
 const reader = createReader(process.cwd(), keystaticConfig);
 
@@ -14,6 +17,7 @@ type PostPageProps = MyPageProps<['postid']>;
 
 const getPost = (postid: string) => reader.collections.posts.read(postid);
 const getTag = (tagId: string) => reader.collections.tags.read(tagId);
+const getPosts = () => reader.collections.posts.all();
 
 export async function generateMetadata({ params: { postid } }: PostPageProps) {
   const post = await getPost(postid);
@@ -28,11 +32,16 @@ const TagFromId = async ({ tagId }: { tagId: string }) => {
   return <Tag>#{tag?.label}</Tag>;
 };
 
+export async function generateStaticParams() {
+  const posts = await getPosts();
+  return posts.map((post) => ({ postid: post.slug }));
+}
+
 export default async function Post({ params: { postid } }: PostPageProps) {
   const post = await getPost(postid);
   if (!post) return null;
   return (
-    <div data-comp="post-page">
+    <LayoutBase pageName="post" className="items-start">
       <ButtonOutline className="mb-[30px] gap-4">
         <IconShare />
         Share
@@ -56,9 +65,37 @@ export default async function Post({ params: { postid } }: PostPageProps) {
       >
         <DocumentRenderer
           document={await post.content()}
-          // componentBlocks={markdownComponents}
+          renderers={{
+            block: {
+              image: ({ src, alt, title }) => (
+                <CustomImg src={src} alt={alt} hostUrl={`/posts/${postid}`} />
+              ),
+              // @ts-ignore
+              code: ({
+                children,
+                language,
+              }: {
+                language: string;
+                children: React.ReactNode;
+              }) => (
+                <div className="relative group">
+                  {language && (
+                    <div className="absolute top-0 right-0 hidden group-hover:block bg-white p-2">
+                      {language}
+                    </div>
+                  )}
+                  <Code lang={language}>{children}</Code>
+                </div>
+              ),
+            },
+            inline: {
+              code: ({ children }: { children: React.ReactNode }) => (
+                <code data-inline>{children}</code>
+              ),
+            },
+          }}
         />
       </div>
-    </div>
+    </LayoutBase>
   );
 }
