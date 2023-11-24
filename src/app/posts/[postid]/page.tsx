@@ -10,6 +10,7 @@ import { formatDate, joinClass } from '@/utils';
 import { createReader } from '@keystatic/core/reader';
 import CustomImg from '@/components/markdown/CustomImg';
 import { Code } from 'bright';
+import MarkdownWrap from '@/components/shared/MarkdownWrap';
 
 const reader = createReader(process.cwd(), keystaticConfig);
 
@@ -56,13 +57,7 @@ export default async function Post({ params: { postid } }: PostPageProps) {
       </p>
       <h1 className="font-head font-bold text-3xl">{post.title}</h1>
       <Divider />
-      <div
-        className={joinClass(
-          '[&_p]:text-base [&_p]:mt-[50px]',
-          '[&_h1]:font-head [&_h2]:font-head [&_h3]:font-head [&_h4]:font-head',
-          '[&>*+*]:mt-[40px]'
-        )}
-      >
+      <MarkdownWrap>
         <DocumentRenderer
           document={await post.content()}
           renderers={{
@@ -95,7 +90,7 @@ export default async function Post({ params: { postid } }: PostPageProps) {
             },
           }}
         />
-      </div>
+      </MarkdownWrap>
     </LayoutBase>
   );
 }

@@ -8,7 +8,13 @@ interface CustomImgProps {
 }
 const CustomImg = ({ src, alt, hostUrl }: CustomImgProps) => {
   const urlValid = getUrlValid(src);
-  return <img src={urlValid ? src : `${hostUrl}/${src}`} alt={alt} />;
+  return (
+    <img
+      src={urlValid ? src : `${hostUrl}/${src}`}
+      alt={alt}
+      className="min-h-[300px]"
+    />
+  );
 };
 
 export default CustomImg;

@@ -30,6 +30,8 @@ const Algolia = ({ tags }: { tags: { label: string; value: string }[] }) => {
   return (
     <div className="flex flex-col gap-5">
       <SearchBox />
+      {search.loading && <p>fetching articles...</p>}
+      {!search.loading && hits.length === 0 && <p>no result</p>}
       <div className="flex flex-wrap gap-2">
         {tagsHits.map((hit) => (
           <a
@@ -44,8 +46,6 @@ const Algolia = ({ tags }: { tags: { label: string; value: string }[] }) => {
           </a>
         ))}
       </div>
-      {search.loading && <p>LOADING</p>}
-      {!search.loading && hits.length === 0 && <p>no result</p>}
       {!search.loading && (
         <ul className="flex flex-col gap-3">
           {hits.map((hit) => (
@@ -57,6 +57,7 @@ const Algolia = ({ tags }: { tags: { label: string; value: string }[] }) => {
                   </PrettyLink>
                   <p>{formatDate(hit.publishedAt, 'YYYY.MMM.DD')}</p>
                   <div className="flex flex-wrap gap-1">
+                    <Tag>post</Tag>
                     {hit.tags.map((tagId) => (
                       <Tag key={tagId}>#{tagsMap[tagId] ?? tagId}</Tag>
                     ))}
@@ -74,12 +75,20 @@ const Algolia = ({ tags }: { tags: { label: string; value: string }[] }) => {
                   {hit.publishedAtType === 'year-month' && (
                     <p>{formatDate(hit.publishedAt, 'YYYY.MMM')}</p>
                   )}
+                  <div>
+                    <Tag>work</Tag>
+                  </div>
                 </>
               )}
               {hit.type === 'contact' && (
-                <PrettyLink href="contact">
-                  contact page 연락처 페이지 보기
-                </PrettyLink>
+                <>
+                  <PrettyLink href="contact">
+                    contact page 연락처 페이지 보기
+                  </PrettyLink>
+                  <div>
+                    <Tag>contact</Tag>
+                  </div>
+                </>
               )}
               {hit?._snippetResult?.body?.matchLevel !== 'none' && (
                 <div

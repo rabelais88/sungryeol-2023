@@ -1,7 +1,6 @@
 import { createReader } from '@keystatic/core/reader';
 import keystaticConfig from '@/keystatic.config';
 
-import Link from 'next/link';
 import LayoutBase from '@/components/shared/LayoutBase';
 import HeadlineItem from '../HeadlineItem';
 
@@ -13,6 +12,7 @@ export default async function Page() {
   const posts = await reader.collections.posts.all();
   return (
     <LayoutBase pageName="posts">
+      <h1 className="font-head text-3xl">POSTS</h1>
       <ul>
         {posts.map((post) => (
           <HeadlineItem
@@ -21,9 +21,6 @@ export default async function Page() {
             publishedAt={post.entry.publishedAt ?? ''}
             href={`/posts/${post.slug}`}
           />
-          // <li key={post.slug}>
-          //   <Link href={`/posts/${post.slug}`}>{post.entry.title}</Link>
-          // </li>
         ))}
       </ul>
     </LayoutBase>

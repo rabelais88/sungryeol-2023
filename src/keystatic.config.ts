@@ -32,9 +32,9 @@ export default config({
           links: true,
           images: {
             // path
-            directory: 'posts',
+            directory: 'public/posts',
             // url
-            // publicPath: 'posts/',
+            publicPath: '/posts/',
           },
           tables: true,
         }),
@@ -92,7 +92,10 @@ export default config({
           formatting: true,
           dividers: true,
           links: true,
-          images: true,
+          images: {
+            directory: 'public/works',
+            publicPath: '/works/',
+          },
           tables: true,
         }),
         urls: fields.array(
