@@ -10,29 +10,7 @@ import {
 import SearchBox from './SearchBox';
 import { useMemo } from 'react';
 import Tag from '@/components/shared/Tag';
-
-const Pagination: React.FC<{
-  searchResults: ReturnType<typeof useAlgoliaSearch>['searchResult'];
-}> = ({ searchResults }) => {
-  const pages = Array.from({ length: searchResults?.nbPages ?? 0 }).map(
-    (_, i) => i
-  );
-  const { page, getPageUrl } = useAlgoliaSearchControl();
-  return (
-    <div className="flex flex-wrap gap-2">
-      {pages.map((i) => (
-        <PrettyLink
-          className="text-center w-[72px]"
-          href={getPageUrl(i)}
-          disabled={i === page}
-          key={i}
-        >
-          {(i + 1).toString()}
-        </PrettyLink>
-      ))}
-    </div>
-  );
-};
+import Pagination from './Pagination';
 
 const Algolia = ({ tags }: { tags: { label: string; value: string }[] }) => {
   const tagsMap = useMemo(
@@ -77,7 +55,7 @@ const Algolia = ({ tags }: { tags: { label: string; value: string }[] }) => {
                   <PrettyLink href={`/posts/${hit.slug}`}>
                     {hit.title}
                   </PrettyLink>
-                  <p>{formatDate(hit.publishedAt, 'YYYY-MMM-DD')}</p>
+                  <p>{formatDate(hit.publishedAt, 'YYYY.MMM.DD')}</p>
                   <div className="flex flex-wrap gap-1">
                     {hit.tags.map((tagId) => (
                       <Tag key={tagId}>#{tagsMap[tagId] ?? tagId}</Tag>
@@ -87,16 +65,22 @@ const Algolia = ({ tags }: { tags: { label: string; value: string }[] }) => {
               )}
               {hit.type == 'work' && (
                 <>
-                  <a href={`/works/${hit.slug}`}>{hit.title}</a>
+                  <PrettyLink href={`/works/${hit.slug}`}>
+                    {hit.title}
+                  </PrettyLink>
                   {hit.publishedAtType === 'year' && (
                     <p>{formatDate(hit.publishedAt, 'YYYY')}</p>
                   )}
                   {hit.publishedAtType === 'year-month' && (
-                    <p>{formatDate(hit.publishedAt, 'YYYY-MM')}</p>
+                    <p>{formatDate(hit.publishedAt, 'YYYY.MMM')}</p>
                   )}
                 </>
               )}
-              {hit.type === 'contact' && <a href="contact">contact</a>}
+              {hit.type === 'contact' && (
+                <PrettyLink href="contact">
+                  contact page 연락처 페이지 보기
+                </PrettyLink>
+              )}
               {hit?._snippetResult?.body?.matchLevel !== 'none' && (
                 <div
                   className={joinClass(
@@ -111,7 +95,7 @@ const Algolia = ({ tags }: { tags: { label: string; value: string }[] }) => {
           ))}
         </ul>
       )}
-      <Pagination searchResults={search.searchResult} />
+      <Pagination searchResults={search.searchResult} className="mx-auto" />
     </div>
   );
 };

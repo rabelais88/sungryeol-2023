@@ -15,7 +15,9 @@ export default async function Page() {
       <ul>
         {works.map((work) => (
           <li key={work.slug}>
-            <Link href={`/works/${work.slug}`}>{work.entry.title}</Link>
+            <Link href={`/works/${work.slug}`}>
+              {work.entry.title} - {work.entry.titleKr}
+            </Link>
           </li>
         ))}
       </ul>

@@ -17,15 +17,16 @@ const SearchBox = () => {
   return (
     <div
       className={joinClass(
-        'relative border-b border-b-black w-full',
-        "after:content-[''] after:bg-contain after:bg-search-oval after:w-6 after:h-6 after:absolute after:right-0"
+        'relative border-b border-b-black w-full h-[30px]',
+        "after:content-[''] after:bg-contain after:bg-search-oval after:w-6 after:h-6 after:absolute after:right-0",
+        'dark:border-white dark:after:bg-white dark:after:rounded-full'
       )}
     >
       <input
         type="text"
         value={internalKeyword}
         onChange={(ev) => setInternalKeyword(ev.target.value)}
-        className="w-full"
+        className="w-full bg-transparent focus:outline-none"
       />
     </div>
   );

@@ -22,7 +22,7 @@ const PrettyLink = ({
         'focus:bg-wave-underline-black focus:bg-[length:15px_5px] focus:animate-underline focus:pb-[5px]',
         'dark:text-white dark:bg-dot-underline-white',
         'dark:hover:bg-wave-underline-white dark:focus:bg-wave-underline-white',
-        'data-[disabled=true]:pointer-events-none data-[disabled=true]:text-gray-300',
+        'data-[disabled=true]:pointer-events-none data-[disabled=true]:text-gray-300 data-[disabled=true]:bg-none',
         className
       )}
       data-disabled={disabled}

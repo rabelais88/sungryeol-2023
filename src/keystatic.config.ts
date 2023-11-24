@@ -69,6 +69,7 @@ export default config({
       entryLayout: 'content',
       schema: {
         title: fields.text({ label: 'Title' }),
+        titleKr: fields.text({ label: 'Title (한국어)' }),
         slug: fields.text({ label: 'Slug' }),
         visible: fields.checkbox({ label: 'visible', defaultValue: true }),
         publishedAt: fields.date({
@@ -97,6 +98,17 @@ export default config({
         urls: fields.array(
           fields.url({ label: 'URL', validation: { isRequired: true } }),
           { label: 'URLs', itemLabel: (props) => props.value ?? 'empty url' }
+        ),
+        tags: fields.array(
+          fields.relationship({
+            label: 'Tag',
+            collection: 'tags',
+            validation: { isRequired: true },
+          }),
+          {
+            label: 'Tag',
+            itemLabel: (props) => props.value ?? 'select a tag',
+          }
         ),
         videos: fields.array(
           fields.url({ label: 'URL', validation: { isRequired: true } }),

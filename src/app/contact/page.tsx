@@ -33,6 +33,7 @@ export default async function Contact() {
       </p>
       <p className="font-head text-[25px] mb-[50px] text-center">DEVELOPER</p>
       <DocumentRenderer document={await contact.content()} />
+      <div data-role="margin" className="h-8"></div>
       <ContactItem
         link="https://codepen.io/rabelais88"
         label="Codepen"

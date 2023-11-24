@@ -1,5 +1,5 @@
 import PrettyLink from '@/components/shared/PrettyLink';
-import { formatDate } from '@/utils';
+import { formatDate, joinClass } from '@/utils';
 import Link from 'next/link';
 
 interface HeadlineItemProps {
@@ -16,7 +16,10 @@ const HeadlineItem = ({
   return (
     <div
       data-comp="headline-item"
-      className="w-full flex flex-col-reverse items-start md:flex-row md:items-center border-t border-t-black-base md:border-none"
+      className={joinClass(
+        'w-full flex flex-col-reverse items-start md:flex-row md:items-center border-t border-t-black-base md:border-none',
+        'dark:border-white'
+      )}
     >
       <PrettyLink href={href}>{title}</PrettyLink>
       <div className="hidden md:inline-block flex-1 border-b border-dashed border-b-black-base dark:border-b-white h-[1px] mx-[10px]" />
