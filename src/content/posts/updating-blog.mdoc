@@ -1,0 +1,69 @@
+---
+title: 블로그를 새단장하고 느낀 것들
+visible: true
+publishedAt: 2023-11-27T15:11
+tags:
+  - frontend
+  - tech
+---
+블로그를 새단장했습니다! 🎺 약 290일 만입니다. 1년에 조금 모자란 시간이구요. 개인적인 이유도 있지만 이는 나중으로 미루겠습니다. 기술적으로나, 개발적으로 큰 이유를 정리해 봤습니다:
+
+- 기존 블로그에서 욕심냈던 점들이 모두 기술부채로 그대로 돌아왔습니다.
+- 디자인-기획적인 실수도 있었습니다.
+
+# 기술부채
+
+기존 블로그는 Next.js 와 TinaCMS, chakra-ui와 monorepo를 사용해 작성했습니다. 2022년 기준으로 핫한 선택이지만 2023년 말에는 별로 그렇지 않습니다.
+
+- Next.js는 판올림 되면서 기존의 기능(pages router)을 버리고 새로운 기능(app router, server components)를 밀어주고 있습니다.
+- TinaCMS는 새로운 Next.js에서 완벽하게 동작하지 않습니다. 클라우드 편집 기능이 좋아보여서 사용하기 시작했으나, 오히려 이 서비스에 묶이면서 당장 TinaCMS없이 글을 편집할 방법도 없어졌습니다.
+- chakra-ui의 CSS-in-JS도 새로운 Next.js에서 동작하지 않습니다. 오히려 빌드속도가 떨어졌고, 버그가 생겼습니다.
+- vercel과 turbopack, monorepo의 버전업 경험은 최악이었습니다. vercel의 배포환경도 문제인데, turbopack에서 오는 문제들, monorepo에서 오는 문제들이 각각 따로였습니다. 스택오버플로우에 문제점을 검색할 수 있냐 없냐가 중요한게 아니라, 시간자체가 중요하지 않은 문제들에 계속 소모되었습니다.
+
+개발자라면 누구나 동의할 사실을 완전히 간과했습니다: 그야말로 기술의 복잡도가 올라갈 수록 관리 필요는 더 늘어간다는 것을요. 아예 1달 주기로 재배포가 가능한 수준이 아니라면 말입니다. 이제는 욕심을 버리고 훨씬 가벼운 길을 걸어갑니다.
+
+- keystatic CMS를 사용합니다. TinaCMS와 똑같은 git-based지만, 훨씬 경량이고 개발자 문서가 잘 유지되고 있습니다. 또한 보일러플레이팅이 적어 여차 싶을 때에는 그냥 마크다운 렌더링만 직접 구현하면 됩니다.
+- tailwindcss를 사용합니다. css기반의 스타일링이 훨씬 유지보수하기 유리합니다. 개발자 경험을 약간 포기하고, 버그 적은 개발에 집중하기로 합니다.
+- Next.js는 이번까지만 그대로 유지합니다. 워낙 생태계가 잘 관리되고 있어, 당분간은 버리기 어렵습니다. 다음번에도 문제가 발생한다면 Hugo나 Gatsby도 생각 중입니다.
+- 빌드 속도개선을 위한 각종 도구들(turborepo, monorepo)는 과감히 포기했습니다. 오히려 약간 느려도 간단한 것이 낫습니다. 문제가 생겨도 걱정 없습니다. 구성할 환경이 크지 않으니까요.
+- 한편 markdown을 선택한 건 정말 현명한 결정이었습니다. 지금도 언제든 사이트를 버리고 다른 markdown기반의 CMS로 갈아탈 수 있습니다.
+- 직접 운영할 서비스라면 재배포는 자주할수록 좋습니다. 정말 없는 이유를 만들어서라도 재배포를 계속 하며 프로젝트의 건강을 체크해야합니다.
+
+# 디자인-기획 실수
+
+- '지식공단'이라는 사이트 이름은 개인 브랜딩에 적합하지 않았습니다. 사이트의 성격보다, 개인 이름을 조금 더 전면적으로 내세우는 방식으로 변경했습니다. 이제는 제 본명인 '성렬'을 사이트 이름으로 사용합니다.
+- 디자인이 중요한게 아니라, 컨텐츠 부족이 더 큰 문제입니다. 앞으로 컨텐츠를 최대한 자주 올려볼 계획입니다.
+- 생각보다 블로깅을 다른 컴퓨터로 할 일이 많지 않았습니다. 조금은 독특한 CMS를 사용하며 여러가지 도구들을 집어넣은 것은 외부에서 수정을 용이하게 하려는 목적이었습니다. 실제로는 글 작성 환경이 그렇게 자주 바뀌지 않았습니다. 개발자가 직접 글을 수정하며, 굳이 다른 사람이 운영하는 블로그 서비스를 만들게 아니라면, 어떻게 만들어도 상관 없는 것 같습니다.
+
+2023년 11월 기준으로, 이제 막 새로운 블로그가 올라간 상황입니다. 블로그는 여전히 완벽하지 않습니다. 그래도 뛸 준비는 다시 마쳤습니다.
+
+---
+
+The blog has been revamped! 🎺 It’s been about 290 days since the last update. That’s time little less than a year. There are also personal reasons, but that will be put aside for later. Here I summarized two major reasons, in a software developer's perspective:
+
+- All the trendy techs I wanted to implement in the previous blog came back as technical debt.
+- There were also design-planning mistakes.
+
+# Technical Debt
+
+- As Next.js is being upgraded, existing features (pages router) are being discarded and new features (app router, server components) are being promoted.
+- TinaCMS does not work perfectly in the new Next.js. I started using the cloud editing function because it seemed good, but now that I am tied to this service, there is no way to edit posts without TinaCMS.
+- Chakra-ui's CSS-in-JS also does not work in the new Next.js. Rather, the build speed slowed down and bugs arose.
+- The version upgrade experience of vercel, turbopack, and monorepo has been the worst. Vercel's distribution environment can also be a problem, but problems arising from turbopack and monorepo were adding salt to the wounds. It's not important if it's covered by Stack Overflow or not, but time itself continues to be wasted on unimportant problems.
+
+It completely overlooked a fact that any developer would agree with: as technology becomes more complex, maintenance cost gets increased, unless deployment is possible on a monthly basis. Now I am letting go of my greed and taking a much lighter path.
+
+- Keystatic CMS is used. It's git-based as TinaCMS is, but much more lightweight and has well-maintained developer documentation; removing boilerplate is much quicker with this one. Then, I can just implement markdown rendering myself.
+- Used tailwindcss. CSS-based styling is much easier to maintain. I'm giving up a little bit of the developer experience and focusing on bug-free development.
+- Next.js will stay here for now. Because the ecosystem is so well managed, it is difficult to abandon it for the time being. If the problem occurs next time, Hugo or Gatsby is also considered as substitute.
+- I boldly gave up on various build tools (turborepo, monorepo) for small efficiency. Rather, something simple is better, even if it is a bit slower. No worries if a problem arises. Because the environment to configure is not large.
+- Choosing markdown as backbone was a really wise decision. Even now, I can just abandon all the codes and switch to another markdown-based CMS in a quick moment.
+- If the service is maintained by the developer himself/herself, it should be redeployed every now and then. You must continue to redistribute and check the health of the project.
+
+# Design-planning Mistakes
+
+- The previous name of this blog, ‘Knowledge Complex지식공단’ is not suitable for personal branding. This time my personal name gets a little more front and center rather than focusing on the nature of the site. Now I use my real name, 'Seongryeol', as the site name.
+- Design is not important, but the lack of content is a bigger problem. I plan to upload content as often as possible in the future.
+- There wasn't as much blogging when I was away from my computer. The purpose of using a somewhat unique CMS and including various tools was to facilitate modification from the outside. In reality, the writing environment doesn't change that often.
+
+As of November 2023, a new blog has just been shipped. It still needs a lot of work. However, it is ready to run again.
