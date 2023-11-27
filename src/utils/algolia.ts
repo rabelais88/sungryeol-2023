@@ -43,7 +43,6 @@ export const useAlgoliaSearchControl = () => {
     return query;
   };
   const setKeyword = (newKeyword: string) => {
-    console.log('algolia() setKeyword', newKeyword);
     const query = mergeQuery({ q: newKeyword, page: '0' });
     router.replace(makeUrl(pathname, query));
   };
@@ -102,7 +101,6 @@ export const useAlgoliaSearch = () => {
     }
   };
   useEffect(() => {
-    console.log('searchControl updated', searchControl);
     updateSearch();
   }, [q, ...tags, page, size]);
   return { searchResult, loading };

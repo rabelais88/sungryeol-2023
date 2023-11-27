@@ -11,9 +11,7 @@ const reader = createReader(process.cwd(), keystaticConfig);
 const getContact = () => reader.singletons.contact.read();
 
 export async function generateMetadata() {
-  return {
-    title: 'contact',
-  };
+  return {};
 }
 
 export default async function Contact() {
