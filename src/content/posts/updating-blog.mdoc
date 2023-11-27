@@ -39,31 +39,30 @@ tags:
 
 ---
 
-The blog has been revamped! 🎺 It’s been about 290 days since the last update. That’s time little less than a year. There are also personal reasons, but that will be put aside for later. Here I summarized two major reasons, in a software developer's perspective:
+I've given my blog a fresh look! 🎺 It's been around 290 days since the last revamp, a bit short of a full year. There are some personal reasons behind this, but I'll delve into those later. For now, I've compiled the major technical and developmental reasons:
 
-- All the trendy techs I wanted to implement in the previous blog came back as technical debt.
-- There were also design-planning mistakes.
+Everything I had envisioned for my previous blog has resurfaced as technical debt. There were also some design and planning mistakes.
 
-# Technical Debt
+# **Technical Debt**
 
-- As Next.js is being upgraded, existing features (pages router) are being discarded and new features (app router, server components) are being promoted.
-- TinaCMS does not work perfectly in the new Next.js. I started using the cloud editing function because it seemed good, but now that I am tied to this service, there is no way to edit posts without TinaCMS.
-- Chakra-ui's CSS-in-JS also does not work in the new Next.js. Rather, the build speed slowed down and bugs arose.
-- The version upgrade experience of vercel, turbopack, and monorepo has been the worst. Vercel's distribution environment can also be a problem, but problems arising from turbopack and monorepo were adding salt to the wounds. It's not important if it's covered by Stack Overflow or not, but time itself continues to be wasted on unimportant problems.
+My old blog was built using Next.js, TinaCMS, chakra-ui, and monorepo. They were hot choices in 2022, but by the end of 2023, their appeal had waned:
 
-It completely overlooked a fact that any developer would agree with: as technology becomes more complex, maintenance cost gets increased, unless deployment is possible on a monthly basis. Now I am letting go of my greed and taking a much lighter path.
+- Next.js evolved, shedding old functionalities (like pages router) and introducing new ones (like app router, server components). This affected TinaCMS' compatibility with the updated Next.js. Although I was drawn to its cloud editing feature, it inadvertently tied me down, making it impossible to edit content without TinaCMS.
+- chakra-ui's CSS-in-JS also didn't align with the new Next.js. Instead of enhancing, it slowed down builds and introduced bugs.
+- Updating Vercel, turbopack, and monorepo was a nightmare. It wasn't just about searching for solutions on Stack Overflow; it was the time sink on seemingly inconsequential issues.
 
-- Keystatic CMS is used. It's git-based as TinaCMS is, but much more lightweight and has well-maintained developer documentation; removing boilerplate is much quicker with this one. Then, I can just implement markdown rendering myself.
-- Used tailwindcss. CSS-based styling is much easier to maintain. I'm giving up a little bit of the developer experience and focusing on bug-free development.
-- Next.js will stay here for now. Because the ecosystem is so well managed, it is difficult to abandon it for the time being. If the problem occurs next time, Hugo or Gatsby is also considered as substitute.
-- I boldly gave up on various build tools (turborepo, monorepo) for small efficiency. Rather, something simple is better, even if it is a bit slower. No worries if a problem arises. Because the environment to configure is not large.
-- Choosing markdown as backbone was a really wise decision. Even now, I can just abandon all the codes and switch to another markdown-based CMS in a quick moment.
-- If the service is maintained by the developer himself/herself, it should be redeployed every now and then. You must continue to redistribute and check the health of the project.
+I completely overlooked a universal truth any developer would agree with: as technology grows complex, so does the need for management. If a system can't redeploy at least monthly, it's not worth it. Now, I'm shedding my desires and opting for a much lighter path:
 
-# Design-planning Mistakes
+- I've switched to keystatic CMS, similar to TinaCMS but lighter with well-maintained developer docs. Additionally, its boilerplating is minimal, making it easier to implement direct markdown rendering.
+- I'm using tailwindcss for styling, favoring CSS-based styling for easier maintenance. I'm sacrificing a bit of developer experience to focus on bug-resistant development.
+- I'm sticking with Next.js for now due to its well-maintained ecosystem. If issues persist, I might consider alternatives like Hugo or Gatsby.
+- I boldly let go of various tools aimed at speeding up build processes. Sometimes, simplicity outweighs speed. I'm not fretting over issues anymore; the setup isn't overly complex.
+- Choosing markdown was a brilliant decision. Even now, I can switch to another markdown-based CMS without hassle. For self-operated services, frequent redeployment is crucial to check project health, even if I have to create reasons to redeploy.
 
-- The previous name of this blog, ‘Knowledge Complex지식공단’ is not suitable for personal branding. This time my personal name gets a little more front and center rather than focusing on the nature of the site. Now I use my real name, 'Seongryeol', as the site name.
-- Design is not important, but the lack of content is a bigger problem. I plan to upload content as often as possible in the future.
-- There wasn't as much blogging when I was away from my computer. The purpose of using a somewhat unique CMS and including various tools was to facilitate modification from the outside. In reality, the writing environment doesn't change that often.
+# **Design & Planning Mistakes**
 
-As of November 2023, a new blog has just been shipped. It still needs a lot of work. However, it is ready to run again.
+- The site name "Knowledge Commons" didn't align with personal branding. Now, I'm embracing my real name, 'Seong Ryeol,' as the site's name.
+- Content scarcity is a bigger issue than design. I plan to publish content more frequently.
+- Surprisingly, I didn't use other computers much for blogging. Integrating various tools aimed to facilitate external edits, but the writing environment didn't change much. If a developer edits directly and isn't running a blog service for others, any approach seems suitable.
+
+As of November 2023, my brand-new blog has just gone live. It's not flawless, but I'm all set to take that leap forward once again.
