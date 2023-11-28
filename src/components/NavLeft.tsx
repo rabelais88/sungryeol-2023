@@ -28,7 +28,7 @@ const NavLeft = () => {
       <Link
         href="/"
         data-active={pathname === '/'}
-        className="data-[active=true]:text-pink-base"
+        className="data-[active=true]:text-pink-base dark:data-[active=true]:text-black"
       >
         <IconLogoGeometry className="mx-auto" />
       </Link>

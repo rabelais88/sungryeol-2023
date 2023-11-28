@@ -26,7 +26,6 @@ const Algolia = ({ tags }: { tags: { label: string; value: string }[] }) => {
   const { activeTagsMap } = useAlgoliaSearchControl();
   const hits = search.searchResult?.hits ?? [];
   const tagsHits = tagsSearchResult?.facetHits ?? [];
-  console.log(hits);
   return (
     <div className="flex flex-col gap-5">
       <SearchBox />

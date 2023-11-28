@@ -79,9 +79,8 @@ const {
       new Date(frontmatter?.publishedAt).getTime() / 1000;
     console.log(`reading work - ${fileName}`);
     return {
-      ...omit(frontmatter, ['urls']),
+      ...frontmatter,
       datePublishTimestamp,
-      tags: [],
       type: 'work',
       slug: workId,
       objectID: workId,
