@@ -39,7 +39,9 @@ const {
   const postFileNames = await fs.readdir(postsPath);
   const postsReadJob = postFileNames.map(async (fileName) => {
     const str = await fs.readFile(path.join(postsPath, fileName), 'utf8');
-    const matches = /^-{3}\n([\s\S]+)-{3}\n([\s\S]+)/.exec(str);
+    // warning: commented expression also captures any separators in the body
+    // const matches = /^-{3}\n([\s\S]+)-{3}\n([\s\S]+)/.exec(str);
+    const matches = /^-{3}\n([\s\S]*?)(?!-{3})*-{3}\n([\s\S]+)/.exec(str);
 
     const frontmatterStr = (matches?.[1] ?? '').replace('---\n', '');
     const bodyStr = matches?.[2] ?? '';
@@ -66,7 +68,7 @@ const {
   const workFileNames = await fs.readdir(worksPath);
   const worksReadJob = workFileNames.map(async (fileName) => {
     const str = await fs.readFile(path.join(worksPath, fileName), 'utf8');
-    const matches = /^-{3}\n([\s\S]+)-{3}\n([\s\S]+)/.exec(str);
+    const matches = /^-{3}\n([\s\S]*?)(?!-{3})*-{3}\n([\s\S]+)/.exec(str);
 
     const frontmatterStr = (matches?.[1] ?? '').replace('---\n', '');
     const bodyStr = matches?.[2] ?? '';
