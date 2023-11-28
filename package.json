@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint",
     "search-index": "ts-node --project ./tsconfig-scripts.json -r tsconfig-paths/register src/scripts/searchIndex.ts"
@@ -23,6 +24,7 @@
     "jotai": "^2.5.1",
     "next": "14.0.3",
     "next-mdx-remote": "^4.4.1",
+    "next-sitemap": "^4.2.3",
     "radash": "^11.0.0",
     "react": "^18",
     "react-dom": "^18"
