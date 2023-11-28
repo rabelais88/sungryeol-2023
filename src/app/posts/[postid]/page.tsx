@@ -11,6 +11,8 @@ import { createReader } from '@keystatic/core/reader';
 import CustomImg from '@/components/markdown/CustomImg';
 import { Code } from 'bright';
 import MarkdownWrap from '@/components/shared/MarkdownWrap';
+import { copyToClipboard } from '@/utils/browser';
+import ButtonShare from './ButtonShare';
 
 const reader = createReader(process.cwd(), keystaticConfig);
 
@@ -24,13 +26,17 @@ export async function generateMetadata({ params: { postid } }: PostPageProps) {
   const post = await getPost(postid);
   return {
     title: post?.title ?? 'untitled',
+    description: 'blog article',
   };
 }
 
 const TagFromId = async ({ tagId }: { tagId: string }) => {
   const tag = await getTag(tagId);
-  if (!tag) return <Tag>#{tagId}</Tag>;
-  return <Tag>#{tag?.label}</Tag>;
+  return (
+    <a href={`/search?tags=${tagId}`}>
+      <Tag>#{tag?.label ?? tagId} </Tag>
+    </a>
+  );
 };
 
 export async function generateStaticParams() {
@@ -40,19 +46,17 @@ export async function generateStaticParams() {
 
 export default async function Post({ params: { postid } }: PostPageProps) {
   const post = await getPost(postid);
+  const url = `https://sungryeol.com/post/${postid}`;
   if (!post) return null;
   return (
     <LayoutBase pageName="post" className="items-start">
-      <ButtonOutline className="mb-[30px] gap-4">
-        <IconShare />
-        Share
-      </ButtonOutline>
-      <div>
+      <ButtonShare url={url} />
+      <div className="flex flex-wrap gap-1 mb-2">
         {post.tags.map((tag) => (
           <TagFromId key={tag} tagId={tag} />
         ))}
       </div>
-      <p className="font-sans font-light">
+      <p className="font-sans font-light mb-5">
         {formatDate(post.publishedAt, 'YYYY.MMM.DD')}
       </p>
       <h1 className="font-head font-bold text-3xl">{post.title}</h1>

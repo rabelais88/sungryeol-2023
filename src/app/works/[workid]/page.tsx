@@ -18,6 +18,7 @@ export async function generateMetadata({ params: { workid } }: WorkPageProps) {
   const work = await getWork(workid);
   return {
     title: work?.title ?? 'untitled',
+    description: 'portfolio demo',
   };
 }
 

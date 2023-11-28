@@ -4,9 +4,14 @@ import keystaticConfig from '@/keystatic.config';
 import LayoutBase from '@/components/shared/LayoutBase';
 import PrettyLink from '@/components/shared/PrettyLink';
 import Tag from '@/components/shared/Tag';
+import { Metadata } from 'next';
 
 // 1. Create a reader
 const reader = createReader(process.cwd(), keystaticConfig);
+
+export const metadata: Metadata = {
+  description: 'blog articles',
+};
 
 export default async function Page() {
   // 2. Read the "Posts" collection
