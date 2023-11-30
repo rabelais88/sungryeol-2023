@@ -10,10 +10,20 @@ import NavTop from '@/components/NavTop';
 import NavLeft from '@/components/NavLeft';
 import { PropsWithChildren } from 'react';
 import ClientProviders from './ClientProviders';
+import Head from 'next/head';
 
-export const metadata: Metadata = {
-  title: '성렬:Sungryeol',
-  description: 'Blog of Sungryeol',
+// export const metadata: Metadata = {
+//   title: '성렬:Sungryeol',
+//   description: 'Blog of Sungryeol',
+// };
+export const generateMetadata = () => {
+  return {
+    title: '성렬:Sungryeol',
+    description: 'Blog of Sungryeol',
+    other: {
+      'naver-site-verification': 'e1500a61389cdfe00a20f70df752548d9af0bdab',
+    },
+  } as Metadata;
 };
 
 export default function RootLayout({ children }: PropsWithChildren) {
